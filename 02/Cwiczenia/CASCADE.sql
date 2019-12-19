@@ -1,0 +1,21 @@
+USE TrainingDb;
+
+CREATE TABLE CasTest
+(
+Id INT PRIMARY KEY
+);
+
+CREATE TABLE RefTest
+(
+Id INT PRIMARY KEY,
+CasTestId INT NOT NULL, 
+FOREIGN KEY(CasTestId) REFERENCES CasTest(Id)
+ON UPDATE NO ACTION
+ON DELETE CASCADE
+);
+
+INSERT INTO CasTest VALUES (1), (2), (3);
+INSERT INTO RefTest (Id, CasTestId) VALUES (1, 1), (2, 1), (3, 2), (4, 3);
+
+--wykonujemy usuniecie!
+DELETE FROM CasTest WHERE Id = 1
